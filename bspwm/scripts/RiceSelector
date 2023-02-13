@@ -8,70 +8,15 @@ cfg_file="$HOME/.config/bspwm/rice.cfg"
 rofi_command="rofi -theme $HOME/.config/bspwm/scripts/RiceSelector.rasi"
 
 # Options
-emilia="󰔿 Emilia"
-jan="󰔿 Jan"
-aline="󰔿 Aline"
-isabel="󰔿 Isabel"
-andrea="󰔿 Andrea"
-cynthia="󰔿 Cynthia"
-silvia="󰔿 Silvia"
-melissa="󰔿 Melissa"
-pamela="󰔿 Pamela"
-cristina="󰔿 Cristina"
-karla="󰔿 Karla"
-z0mbi3="󰔿 z0mbi3"
+isabel="󰔿 ayx"
 
-options="$emilia\n$jan\n$aline\n$isabel\n$andrea\n$cynthia\n$silvia\n$melissa\n$pamela\n$cristina\n$karla\n$z0mbi3"
+options="$isabel\n"
 chosen="$(printf "$options" | $rofi_command -dmenu)"
 	case $chosen in
 
-			$emilia)
-				cat <<< "emilia" > ${cfg_file}
-				bspc wm -r
-				;;
-			$jan)
-				cat <<< "jan" > ${cfg_file}
-				bspc wm -r
-				;;
-			$aline)
-				cat <<< "aline" > ${cfg_file}
-				bspc wm -r
-				;;
 			$isabel)
 				cat <<< "isabel" > ${cfg_file}
 				bspc wm -r
 				;;
-			$andrea)
-				cat <<< "andrea" > ${cfg_file}
-				bspc wm -r
-				;;
-			$cynthia)
-				cat <<< "cynthia" > ${cfg_file}
-				bspc wm -r
-				;;
-			$silvia)
-				cat <<< "silvia" > ${cfg_file}
-				bspc wm -r
-				;;
-			$melissa)
-				cat <<< "melissa" > ${cfg_file}
-				bspc wm -r
-				;;
-			$pamela)
-				cat <<< "pamela" > ${cfg_file}
-				bspc wm -r
-				;;
-			$cristina)
-				cat <<< "cristina" > ${cfg_file}
-				bspc wm -r
-				;;
-			$karla)
-				cat <<< "karla" > ${cfg_file}
-				bspc wm -r
-				;;
-			$z0mbi3)
-				cat <<< "z0mbi3" > ${cfg_file}
-				bspc wm -r
-				;;				
 		esac
 	
