@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir="$HOME/.config/hypr"
+
+if [ -z "$1" ]; then
+    nvim "$dir/hyprland.conf"
+elif [ $1 == "-b" ]; then
+    nvim "$dir/binds.conf" 
+elif [ $1 == "-w" ]; then
+    nvim "$dir/windowrules.conf"
+fi
+

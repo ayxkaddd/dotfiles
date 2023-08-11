@@ -1,0 +1,17 @@
+#!/bin/bash
+
+seconds=0
+
+while true; do
+    clear
+    hours=$((seconds / 3600))
+    minutes=$(( (seconds % 3600) / 60 ))
+    remaining_seconds=$((seconds % 60))
+    hrs=$(printf "%02d" "$hours")
+    mins=$(printf "%02d" "$minutes")
+    secs=$(printf "%02d" "$remaining_seconds")   
+    figlet "$hrs:$mins $secs" | lolcat
+    sleep 1
+    ((seconds++))
+done
+

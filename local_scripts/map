@@ -1,0 +1,8 @@
+#!/bin/bash
+
+json_data=$(curl -q -s https://hollyspace.net/up/world/world/$(date +%s%N | cut -b1-13) | jq .players)
+online=$(echo $json_data | jq -r .[].name)
+echo "Online: $(echo "$online" | wc -l)"
+echo "$json_data" | jq -r '.[] | [.name, .world, .armor, (.x|tostring), (.y|tostring), (.z|tostring), .health] | @tsv' |
+awk 'BEGIN{print "Name\tWorld\tArmor\tX\tY\tZ\tHealth"} {print}' | column -t -s $'\t'
+

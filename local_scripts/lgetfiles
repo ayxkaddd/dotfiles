@@ -1,0 +1,46 @@
+#!/bin/bash
+
+URL="http://localhost:8080/storage"
+curlArgs=""
+progress_file="/tmp/curl"
+
+countdown() {
+    progress_file=$1
+
+    while :; do
+        if [[ -f $progress_file ]]; then
+            progress=$(tr $'\r' $'\n' < $progress_file | tail -n 1 | sed -r 's/^[# ]+/#/;')
+            notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Progress: $progress"
+            if grep -q "100" "$progress_file"; then
+                pkill getfiles
+            fi
+        else
+            notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "No progress available"
+        fi
+        sleep 1
+    done
+}
+
+download_with_progress() {
+    url=$1
+    filename=$2
+
+    curl $curlArgs --progress-bar -o "$filename" "$url" 2>$progress_file &
+
+    countdown "$progress_file" &
+}
+
+fileNames=$(curl $curlArgs $URL/uploads.php | jq -r '. | keys[]')
+selectedFile=$(echo "$fileNames" | tr '\n' '\0' | rofi -dmenu -i -sep '\0' -p "Select a file")
+
+if [[ -n $selectedFile ]]; then
+    notify-send -t 2000 "Selected file: $selectedFile"
+    fileurl=$(curl $curlArgs $URL/uploads.php | jq -r --arg file "$selectedFile" '.[$file]')
+    echo $fileurl
+    download_with_progress "$URL/$fileurl" "/home/ayx/downloads/www/$selectedFile"
+    notify-send -t 2000 "File saved to" "/home/ayx/downloads/www"
+    echo > /tmp/curl
+else
+    echo "No file selected."
+fi
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+input_file=$1
+
+exiftool -all= $input_file
+
+rm "$input_file"_original

