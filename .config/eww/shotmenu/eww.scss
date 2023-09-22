@@ -1,0 +1,115 @@
+*{
+    all:unset;
+}
+
+$black: #242424;
+$red: #d84b4f;
+$yellow: #d8af4b;
+$green: #9ed84b;
+$blue: #4b91d8;
+$magenta: #734bd8;
+$cyan: #4bd8a2;
+$white: #c6c6c6;
+$gray: gray;
+$gray-alt: #333333;
+
+// Control Center Main Colors
+$cc-fg: $white;
+$cc-bg: $gray-alt;
+$cc-circular-bg: $gray;
+$cc-text: $white;
+
+.menu{
+    background-color: rgba($color: $gray, $alpha: 0.4);
+    border-radius: 16px;
+    border-style: solid;
+}  
+
+
+// .shot_bg {
+//     padding: 15px;
+//     background-color: rgba($color: gray, $alpha: 0.4);
+//     border-radius: 16px ;
+// 	min-width: 340px;
+// 	min-height: 250px;
+//     animation-name: flyin-top;
+//     animation-duration: 350ms;
+//     animation-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
+// }
+
+
+//   @keyframes flyin-top {
+//     from {
+//       margin-top: -500px;
+//     }
+    
+//     to {
+//       margin-top: 0px;
+//     }
+//     }
+
+// .shot_bg {
+//     background-color: #ffffff;
+// 	background-size: cover;	
+// 	background-position: center;
+//     background-repeat: no-repeat;
+//     box-shadow: inset 0 0 0 2000px rgba(29, 25, 61, 0.3);
+// 	min-height: 280px;
+// 	border-radius: 16px;
+// }
+
+.button {
+    background-color: #6d544a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #8f7064;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Specific button styles */
+.area-btn {
+    background-color: #6d544a;
+    border-radius: 4px; /* Optional: Add rounded corners to specific buttons */
+}
+
+.now-btn {
+    background-color: #6d544a;
+    border-radius: 0px; /* Optional: Add rounded corners to specific buttons */
+}
+
+.win-btn {
+    background-color: #6d544a;
+    border-radius: 4px; /* Optional: Add rounded corners to specific buttons */
+}

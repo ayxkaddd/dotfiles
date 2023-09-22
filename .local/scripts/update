@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+    sudo pacman -Syy
+else
+    echo "running without syncing repos"
+fi
+
+new_updates=$(checkupdates | wc -l)
+
+if [ $new_updates -eq 0 ]; then
+    echo "there is nothing to do"
+else
+    checkupdates
+    echo "there is $new_updates new updates"
+    read -p "do you want to update them? (Y/n): " yn
+    if [[ "$yn" == "y" || "$yn" == "Y" ]]; then
+        sudo pacman -Su
+        echo "the system is updated"
+    else
+        echo "ok"
+        exit 0
+    fi
+fi
+

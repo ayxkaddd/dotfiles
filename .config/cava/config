@@ -1,0 +1,10 @@
+[input]
+method = pulse
+
+[color]
+gradient = 1 
+gradient_count = 3
+gradient_color_1 = '#FFC0CB'      ; Light Pink
+gradient_color_2 = '#FF69B4'      ; Medium Pink
+gradient_color_3 = '#FF1493'      ; Dark Pink
+

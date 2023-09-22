@@ -1,0 +1,36 @@
+#!/bin/bash
+
+while getopts ":n:" opt; do
+  case $opt in
+    n)
+      n="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [ -z "$n" ]; then
+  echo "Usage: $0 -n <number>"
+  exit 1
+fi
+
+if [ "$n" -lt 1 ]; then
+  echo "Invalid argument: -n must be a positive integer."
+  exit 1
+fi
+
+file=""
+while IFS= read -r -d '' recent_file; do
+  file="$(basename "$recent_file")"
+  break
+done < <(find . -maxdepth 1 -type f -printf '%T@ %p\0' | sort -nz | tail -n "$n" -z)
+
+echo "$file"
+

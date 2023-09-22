@@ -1,0 +1,15 @@
+#!/bin/bash
+
+info=$(nmcli device wifi show-password)
+tssid=$(echo "$info" | grep "SSID: ")
+ssid="${tssid#*: }"
+sec=$(echo "$info" | grep "Security: " | awk '{print $2}')
+pass=$(echo "$info" | grep "Password: " | awk '{print $2}')
+
+qrdata="WIFI:S:$ssid;T:$sec;P:$pass;;"
+
+qrencode -s 15 -l L -o /tmp/tempqrcode "$qrdata"
+sxiv -b /tmp/tempqrcode
+exit 0
+rm /tmp/tempqrcode
+

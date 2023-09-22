@@ -1,0 +1,7 @@
+function fish_prompt
+    set_color dc5bbc 
+    set mdpwd (string replace --all -- "$HOME" "~" $PWD)
+    echo -n "$USER@archlinux" 
+    set_color 00d19f 
+    echo "" $mdpwd""'$' (set_color normal)
+end

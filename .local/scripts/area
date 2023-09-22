@@ -1,0 +1,12 @@
+#!/bin/bash
+
+path="/home/ayx/pics/Screenshots"
+time=$(date +%Y-%m-%d-%H-%M-%S)
+file="$path/Screenshot_${time}_${RANDOM}.png"
+idir="$HOME/.config/hypr/mako/icons"
+notify_cmd_shot="notify-send -i ${idir}/picture.png"
+
+eww close screenshotmenu
+sleep 0.3 
+grim -g "$(slurp -w 2)" - | tee "$file" | wl-copy
+${notify_cmd_shot} "Screenshot Saved"

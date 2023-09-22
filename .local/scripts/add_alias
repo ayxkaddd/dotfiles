@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FISHPATH="$HOME/.config/fish/config.fish"
+
+line="alias $1=\"$2\""
+echo $line >> $FISHPATH
+

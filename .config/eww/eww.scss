@@ -1,0 +1,315 @@
+*
+{
+    all: unset;
+}
+
+.msc_box {
+	padding: 15px;
+	background-color: rgba($color: gray, $alpha: 0.4);
+
+	border-radius: 16px ;
+	min-width: 340px;
+	min-height: 250px;
+    animation-name: flyin-top;
+    animation-duration: 350ms;
+    animation-timing-function: cubic-bezier(0.05, 0.7, 0.1, 1);
+  }
+
+  @keyframes flyin-top {
+    from {
+      margin-top: -500px;
+    }
+    
+    to {
+      margin-top: 0px;
+    }
+    }
+
+.msc_bg {
+	background-color: #ffffff;
+	background-size: cover;	
+	background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 2000px rgba(29, 25, 61, 0.3);
+	min-height: 280px;
+	border-radius: 16px;
+}
+
+.song_btn_prev, .song_btn_next, .song_btn_play {
+  font-size: 30px;
+  font-weight: normal;
+  color: #ffffff;
+  margin-top: 130px;
+	padding: 5px;
+}
+
+.song, .song_artist{
+	font-size: 18px;
+	font-weight : bold;
+}
+
+.song {
+  color: #ffffff;
+	margin-top : 10px;
+}
+.song_artist {
+  color: #ffffff;
+}
+
+
+
+.bar-menu {
+	padding: 15px;
+	background-color: rgba($color: #000000, $alpha: 0.4);
+	background-image: url('textures/acrylic.png');
+	border-radius: 16px;
+}
+
+/* tooltip */
+tooltip
+{
+    background-color: #161320;
+    font-family: UbuntuMono Nerd Font;
+    font-size: 14px;
+}
+
+/* power */
+
+
+.lock-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 30px;
+    transition: 200ms;
+}
+
+.lock-btn:hover
+{
+    color: #CBA6F7;
+    font-family: Material Design Icons Desktop;
+    font-size: 35px;
+    transition: 200ms;
+}
+
+.power-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 30px;
+    transition: 200ms;
+}
+
+.power-btn:hover
+{
+    color: #CBA6F7;
+    font-family: Material Design Icons Desktop;
+    font-size: 35px;
+    transition: 200ms;
+}
+
+.restart-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 30px;
+    transition: 200ms;
+}
+
+.restart-btn:hover
+{
+    color: #CBA6F7;
+    font-family: Material Design Icons Desktop;
+    font-size: 35px;
+    transition: 200ms;
+}
+
+.logout-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 30px;
+    transition: 200ms;
+}
+
+.logout-btn:hover
+{
+    color: #CBA6F7;
+    font-family: Material Design Icons Desktop;
+    font-size: 35px;
+    transition: 200ms;
+}
+
+.powermenu
+{
+    background-color: #1D1F28;
+    border-radius: 15px;
+    //border: 2px solid #2f354b;
+}
+
+/* launcher */
+
+.launchermenu
+{
+    background-color: #1D1F28;
+    border-radius: 8px;
+    //border: 2px solid #2f354b;
+}
+
+.launcher-icon
+{
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
+.face {
+	background-size: 130px;
+	min-height: 130px;
+	min-width: 130px;
+	margin: 13px 0px 11px 0px;
+	border-radius: 100%;
+}
+
+.launcher-pfp-label
+{
+    font-family: Inconsolata Semi Condensed Medium;
+    font-size: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.launcher-pfp-label2
+{
+    font-family: Inconsolata Semi Condensed Medium;
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.launcher-btn
+{
+    color: #D9E0EE;
+    font-family: Material Design Icons Desktop;
+    font-size: 18px;
+    margin: 20px 0px 20px 0px;
+}
+
+.launcher-btn:hover
+{
+    color: #CBA6F7;
+    font-family: Material Design Icons Desktop;
+    font-size: 18px;
+    margin: 20px 0px 20px 0px;
+}
+
+/* Calendar */
+
+.cal-box {
+  background-color: #1D1F28;
+  border-radius: 8px;
+  //border: 2px solid #2f354b;
+  font-family: JetBrainsMonoMedium Nerd Font;
+  font-size: .9em;
+
+  .cal-inner-box {
+      padding: 1rem 1rem .2rem;
+
+      .cal {
+          &.highlight {
+              padding: 10rem;
+          }
+
+          padding: .8rem .25rem 0rem;
+          margin-left: 10px;
+      }
+  }
+}
+
+calendar:selected {
+  color: #C574DD;
+}
+
+calendar.header {
+color: #D9E0EE;
+font-weight: bold;
+}
+
+calendar.button {
+color: #C574DD;
+}
+
+calendar.highlight {
+color: #C574DD;
+font-weight: bold;
+}
+
+calendar:indeterminate {
+color: #8C8C8C;
+}
+
+/* Music player */
+
+.music-player{
+	background-color: #1D1F28;
+	padding: 0 1.5rem 1rem 1.5rem;
+	border-radius: 12px;
+	margin: .5rem;
+}
+.album_art {
+	background-size: cover;
+	background-position: center;
+	border-radius: 12px;
+	margin: 2rem 1rem 1.5rem 1rem;
+	padding: 7rem;
+}
+
+.artist {
+	font-family: Cartograph CF;
+	font-style: italic;
+	font-weight: bold;
+	color: #FDFDFD;
+	font-size : 13px;
+}
+.song{
+	font-family: Cartograph CF;
+	font-style: italic;
+	font-size: 15px;
+	color: #FDFDFD;
+	margin-top: -5px;
+}
+.btn_prev, .btn_play, .btn_next {
+	font-family: JetBrainsMono Nerd Font;
+}
+.btn_prev {
+	color: #FDFDFD;
+	font-size : 2.6em;
+}
+.btn_play {
+	color: #FDFDFD;
+	font-size : 2.6em;
+	font-weight : bold;
+}
+.btn_next {
+	color: #FDFDFD;
+	font-size : 2.6em;
+}
+.metric-player  scale trough highlight {
+	all: unset;
+	border-radius: 10px;
+	background-color: #C574DD;
+}
+  
+.metric-player scale trough  {
+	all: unset;
+	background-color: #1D1F28;
+	border:2px solid #454545;
+	border-radius: 50px;
+  }
+  
+.metric-player scale trough  {
+	min-width: 200px;
+	min-height: 10px;
+	margin: .5rem 1rem 0 1rem;
+}

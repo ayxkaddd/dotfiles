@@ -1,0 +1,14 @@
+#!/bin/bash
+WPATH="$HOME/.config/hypr/waybar"
+wargs="--bar main-bar --config $WPATH/config --style $WPATH/style.css"
+
+if [ -z $1 ]; then
+    pkill -f "waybar $wargs" 
+    setsid -f waybar $wargs 1>/dev/null 2>/dev/null
+elif [ $1 == "-d" ]; then
+    pkill -f "waybar $wargs" 
+    waybar $wargs 
+else
+    echo 1>/dev/null
+fi
+

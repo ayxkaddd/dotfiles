@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eww close powermenu
+swaylock --indicator --effect-blur 12x5 & disown
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+regpath="/opt/htb/htb.ovpn"
+compath="/opt/htb/comphtb.ovpn"
+
+if [ -z $1 ]; then
+    sudo openvpn $regpath
+elif [ $1 == "-c" ]; then
+    sudo openvpn $compath
+elif [ $1 == "-h" ]; then
+    sudo openvpn $regpath
+fi
+

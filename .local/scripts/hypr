@@ -1,0 +1,37 @@
+#!/bin/bash
+
+dir="$HOME/.config/hypr"
+
+cdir() {
+    cd $1
+    $SHELL
+}
+
+if [ -z "$1" ]; then
+    nvim "$dir/hyprland.conf"
+elif [ $1 == "-b" ]; then
+    nvim "$dir/binds.conf" 
+elif [ $1 == "-w" ]; then
+    nvim "$dir/windowrules.conf"
+elif [ $1 == "-d" ]; then
+    cdir $dir
+elif [ $1 == "-s" ]; then
+    cdir $dir/scripts
+elif [ $1 == "-os" ]; then
+    nvim $dir/scripts
+elif [ $1 == "--log" ] || [ $1 == "log" ] || [ $1 == "-l" ]; then
+    watch -t -n 1 "tail -n50 /tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log"
+elif [ $1 == "-B" ] || [ $1 == "--back" ]; then
+    read -p "do u want to make a backup? (Y/n) " choice
+    if [[ "$choice" == "Y" || "$choice" == "y" ]]; then
+        cp $(which Hyprland) $HOME/templates/hypr/Hyprland
+        cp $(which hyprctl) $HOME/templates/hypr/hyprctl
+        echo "done"
+    else
+        echo "okay. exiting"
+        exit 1
+    fi
+else
+    echo "no such idk bruh yk what i mean lol" 
+fi
+

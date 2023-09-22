@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+    if grep -qs /dev/sda1 /proc/mounts; then
+        echo "mount point is alredy mounted. exiting."
+        exit 2
+    else
+        sudo mount -t vfat -o uid=1000,gid=1000,umask=0022 /dev/sda1 /mnt/flashd/
+        echo "/dev/sda1 is mounted to /mnt/flashb"
+    fi
+else
+    sudo umount /mnt/flashd
+    echo "/mnt/flashb is unmouted"
+fi
+

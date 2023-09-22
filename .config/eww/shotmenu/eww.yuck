@@ -1,0 +1,47 @@
+(defwidget screenshotmenu []
+    (box :class "shotmenu"
+        :orientation "h"
+        (menu)))
+
+(defwidget menu []
+    (box :class "shot_bg" 
+        :orientation "v"
+        :halign "center"
+        :valign "center"
+        :space-evenly "true"
+        :spacing 10
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
+               :class "area-btn"
+               :tooltip "Screenshot window area"
+               "Area"))
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ && sleep 0.1 && /home/ayx/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
+               :class "now-btn"
+               :tooltip "Screenshot full screen"
+               "Full Screen"))
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ 4&& sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
+               :class "win-btn"
+               :tooltip "Screenshot current window"
+               "Window"))))     
+
+
+(defwindow screenshotmenu 
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "8%"
+                        :height "14%"
+                        :anchor "center")
+    (screenshotmenu))
+

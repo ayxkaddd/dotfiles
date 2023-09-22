@@ -1,0 +1,32 @@
+#!/bin/bash
+clear
+
+json=$(hyprctl activewindow -j | jq .size)
+
+HEIGHT=$(echo "$json" | jq '.[1] / 1.3 | floor')
+WIDTH=$(echo "$json" | jq '.[0]')
+
+if [ -z $1 ]; then
+    random_number=$((RANDOM % 2 + 1))
+    if [ $random_number -eq 1 ]; then
+        img2sixel -h $HEIGHT -w $WIDTH $HOME/pics/Jimmy_McGill_BCS_S3.png
+    else
+        img2sixel -g -h $HEIGHT -w $WIDTH $HOME/pics/installhyprland.gif
+    fi
+elif [ $1 == "-v1" ]; then 
+    img2sixel -h $HEIGHT -w $WIDTH $HOME/pics/Jimmy_McGill_BCS_S3.png
+elif [ $1 == "-v2" ]; then
+    img2sixel -h $HEIGHT -w $WIDTH $HOME/pics/jimmykekz.jpg
+elif [ $1 == "-s" ]; then
+    img2sixel -h $HEIGHT -w $WIDTH $HOME/pics/anotherjimmy.jpg
+elif [ $1 == "-g" ]; then
+    mpv --loop "/home/ayx/music/saultheme.aac" > /dev/null 2>&1 &
+    mpv_pid=$!
+    img2sixel -g -h $HEIGHT -w $WIDTH /home/ayx/pics/jimmyspining.gif
+    kill -9 $mpv_pid
+elif [ $1 == "-c" ]; then
+    img2sixel -g -h $HEIGHT -w $WIDTH $2 
+else
+    figlet -c "no jimmy."
+fi
+

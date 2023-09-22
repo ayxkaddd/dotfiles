@@ -1,0 +1,32 @@
+(defpoll current-brightness :interval "0s" "/home/ayx/.local/scripts/getbrig")
+(defvar brightness-hidden "false")
+
+(defwidget brightness-slider []
+  (box :class "cc-slider-box"
+       :orientation "v"
+       (scale :class "cc-volbar"
+              :valign "start"
+              :value current-brightness
+              :orientation "h"
+              :flipped false
+              :width 280
+              :max 101
+              :min 0
+              :onchange "brightnessctl set {}"
+		)	  
+	)
+)
+
+(defwidget brightness-indicator []
+  (box :class "cc-padded-box"
+       :visible brightness-hidden
+       :orientation "v"
+       (brightness-slider)))
+
+(defwindow brightness-indicator
+  :geometry (geometry :x "42%"
+                      :y "50%")
+  :monitor 0
+  :hexpand false
+  :vexpand false
+  (brightness-indicator))

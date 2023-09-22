@@ -1,8 +1,0 @@
-#!/bin/bash
-
-while true; do
-    title=$(hyprctl -j  activewindow | jq -r .title)
-    echo $title
-    sleep 0.3
-done
-

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-URL="http://localhost:8080/storage/index.php"
-curlArgs="--progress-bar"
-
-output=$(curl $curlArgs -F "file=@$1" $URL | head -n 1)
-notify-send "$output"

@@ -1,0 +1,7 @@
+#!/bin/bash
+wallsPATH="$HOME/pics/wallpapers"
+swwwargs="--transition-type=outer --transition-fps=165 --transition-pos=1.000,0.000"
+fzfout=$(find "$wallsPATH" -type f | xargs -I {} basename {} | fzf -m)
+wall=$(echo $fzfout | awk '{print $NF}')
+swww img $swwwargs "$wallsPATH/$wall"
+

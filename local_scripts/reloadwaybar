@@ -1,4 +1,0 @@
-WPATH="/home/ayx/.config/hypr/waybar"
-
-pkill waybar; setsid -f waybar --bar main-bar --config $WPATH/config --style $WPATH/style.css 1>/dev/null 2>/dev/null
-

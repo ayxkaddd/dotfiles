@@ -1,0 +1,130 @@
+(defpoll time0 :interval "10s"  "date '+%H':%M")
+(defpoll date :interval "10s"  "date '+%b %d'")
+(defpoll music_url :interval "1s" "sh ~/.config/hypr/scripts/songart.sh echo")
+(defpoll song :interval "1s" "sh ~/.config/hypr/scripts/songcontrol")
+(defpoll song_artist :interval "1s" "sh ~/.config/hypr/scripts/songcontrol -a")
+(defpoll song_status :interval "1s" "sh ~/.config/hypr/scripts/status-player")
+
+(defwidget music []
+        (box :class "msc_box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
+                (box :orientation "v" :class "msc_bg" :style "background-image: url('${music_url}');" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false"
+                        (box :orientation "h" :spacing 28 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+                                (button :class "song_btn_prev" :onclick "sh /home/ayx/.config/hypr/scripts/songcontrol -prev" "")
+                                (button :class "song_btn_play" :onclick "sh -c '/home/ayx/.config/hypr/scripts/songcontrol -pa; sleep 0.2; eww close song 2>/tmp/eww.log' 2>/tmp/eww.log" song_status)
+                                (button :class "song_btn_next" :onclick "sh /home/ayx/.config/hypr/scripts/songcontrol -n" "")
+                        )
+                )
+                (label :halign "start" :class "song" :wrap "false" :limit-width 45 :text song)
+                (label :halign "start" :class "song_artist" :wrap "true" :limit-width 25 :text song_artist)
+        )
+)
+
+(defwindow song :stacking "fg"
+        :monitor 0
+        :geometry (geometry :x "41%"
+                            :y "1%"
+                            :width "340px"
+                            :height "250px")
+  (music))
+
+
+(defwidget powermenu []
+     (box :class "powermenu"
+          :orientation "v"
+          (lock-power-restart)))
+
+(defwidget lock-power-restart []
+     (box :orientation "h"
+          :halign "center"
+          :valign "center"
+          :space-evenly "true"
+          :spacing 35
+          (box :orientation "v"
+               :halign "center"
+               :valign "center"
+               :space-evenly "false"
+               (button :onclick "hyprctl dispatch exit"
+                    :class "logout-btn"
+                    :tooltip "Logout"
+                    "󰍃"))
+          (box :orientation "v"
+               :halign "center"
+               :valign "center"
+               :space-evenly "false"
+               (button :onclick "lockscreen"
+                    :class "lock-btn"
+                    :tooltip "Lock screen"
+                    ""))
+          (box :orientation "v"
+               :halign "center"
+               :valign "center"
+               :space-evenly "false"
+               (button :onclick "systemctl reboot"
+                    :class "restart-btn"
+                    :tooltip "Reboot"
+                    ""))
+          (box :orientation "v"
+               :halign "center"
+               :valign "center"
+               :space-evenly "false"
+               (button :onclick "systemctl poweroff"
+                       :class "power-btn"
+                       :tooltip "Power off"
+                       ""))))           
+
+;; Power Menu ;;
+(defwindow powermenu
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "14%"
+                        :height "6%"
+                        :anchor "top right")
+    (powermenu))
+
+
+(defwidget screenshotmenu []
+    (box :class "powermenu"
+        :orientation "h"
+        (menu)))
+
+(defwidget menu []
+    (box :orientation "v"
+        :halign "center"
+        :valign "center"
+        :space-evenly "true"
+        :spacing 10
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
+               :class "area-btn"
+               :tooltip "Screenshot window area"
+               "Area"))
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.1 && /home/ayx/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
+               :class "now-btn"
+               :tooltip "Screenshot full screen"
+               "Full Screen"))
+        (box :orientation "v"
+            :halign "center"
+            :valign "center"
+            :space-evenly "false"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
+               :class "win-btn"
+               :tooltip "Screenshot current window"
+               "Window"))))     
+
+
+(defwindow screenshotmenu 
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "10%"
+                        :height "15%"
+                        :anchor "center")
+    (screenshotmenu))

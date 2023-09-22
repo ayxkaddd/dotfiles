@@ -1,0 +1,24 @@
+#!/bin/bash
+
+link=$(cliphist list | head -n1 | awk '{print $2}')
+ytregex="^(https?://)?(www\.)?(youtube\.com|youtu\.be)/.*"
+
+if [[ $link =~ $ytregex ]]; then
+    echo "" > /dev/null
+else
+    hyprnotify -e "Error. Text from clipboard is not a youtube link."
+    exit 1
+fi 
+
+filename=$(printf | dmenu -b -p "filename: " -nf "#fafafa" -sb "#6c6d72" -nb "#1e1f29")
+
+if [ -z "$filename" ]; then
+    exit 1
+elif [[ "$filename" == *".mp4" ]]; then
+    wget $(yt-dlp -f b --get-url "$link") -O $HOME/vids/ytvids/$filename
+    hyprnotify "Done. Video is saved to ~/vids/ytvids/$filename"
+else
+    wget $(yt-dlp -f b --get-url "$link") -O $HOME/vids/ytvids/$filename.mp4
+    hyprnotify "Done. Video is saved to ~/vids/ytvids/$filename.mp4"
+fi
+

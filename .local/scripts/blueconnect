@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mac="CA:05:0D:9B:CE:DE"
+option=$(printf "yes\nno" | dmenu -b -p "Connect to EW26?")
+
+if [ $option == "yes" ]; then
+    notify-send -t 5 "Blueconnect" "Connection to EW26..."
+    bluetoothctl power on
+    bluetoothctl connect $mac
+else
+    bluetoothctl power off
+fi
+

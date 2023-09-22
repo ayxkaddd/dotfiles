@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import sys
+import zlib
+
+def readkek(file_path):
+    with open(file_path, 'rb') as file:
+        compressed_data = file.read()
+    return compressed_data
+
+file_path = sys.argv[-1] 
+compressed_data = readkek(file_path)
+if compressed_data is not None:
+    try:
+        decompressed_data = zlib.decompress(compressed_data)
+        print(decompressed_data.decode('utf-8'))
+    except zlib.error as e:
+        print("Error decompressing data:", e)
+

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-path=$(sxiv -otb $HOME/pics/wallpapers/) 
-swww img --transition-type=outer --transition-fps=165 --transition-pos=1.000,0.000 "$path"
-
-#swww img $path --transition-fps 60 --transition-type simple --transition-duration 1 
-

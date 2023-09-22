@@ -1,0 +1,48 @@
+#!/bin/bash
+
+target_x=-464
+target_y=60
+target_z=460
+range=50
+
+specific_user="drain4life"
+
+calculate_distance() {
+    local x1=$1
+    local y1=$2
+    local z1=$3
+    local x2=$4
+    local y2=$5
+    local z2=$6
+
+    local dx=$((x1 - x2))
+    local dy=$((y1 - y2))
+    local dz=$((z1 - z2))
+
+    echo $((dx*dx + dy*dy + dz*dz))
+}
+
+while true; do
+    json_data=$(curl -q -s https://hollyspace.net/up/world/world/$(date +%s%N | cut -b1-13) | jq .players)
+    nearby_users=()
+
+    while IFS=$'\t' read -r name x y z; do
+        if [[ "$name" != "$specific_user" ]]; then
+            distance=$(calculate_distance $x $y $z $target_x $target_y $target_z)
+            if (( distance <= range * range )); then
+                nearby_users+=("$name")
+            fi
+        fi
+    done <<< $(echo "$json_data" | jq -r '.[] | [.name, .x, .y, .z] | @tsv')
+
+    if [ ${#nearby_users[@]} -gt 0 ]; then
+        echo "Other users near the specified coordinates:"
+        for user in "${nearby_users[@]}"; do
+            echo "$user"
+        done
+        exit
+    fi
+
+    sleep 10
+done
+

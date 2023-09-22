@@ -1,0 +1,27 @@
+#!/bin/bash
+
+brighness=$(/usr/bin/brightnessctl -m | cut -d, -f4 | sed 's/%$//')
+prev_brighness=$brighness
+path="/home/ayx/.config/eww/brighness-indicator"
+
+while :
+do
+    sleep 0.1
+    brighness=$(/usr/bin/brightnessctl -m | cut -d, -f4 | sed 's/%$//')
+
+    if [ "$brighness" != "$prev_brighness" ]
+    then
+        eww update brightness-hidden='true' -c $path 
+        prev_brighness=$brighness
+        sleep 1
+
+        new_brighness=$(/usr/bin/brightnessctl -m | cut -d, -f4 | sed 's/%$//')
+        if [ "$new_brighness" != "$prev_brighness" ]
+        then
+            continue
+        else
+            eww update brightness-hidden='false' -c $path 
+            prev_brighness=$brighness
+        fi
+    fi
+done
