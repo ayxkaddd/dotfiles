@@ -1,0 +1,4 @@
+#!/bin/bash
+
+eww open volume-indicator -c $HOME/.config/eww/volume-indicator && sh -c '$HOME/.config/eww/volume-indicator/scripts/volume'
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+ignore="firefox.instance$(pgrep firefox)"
+parg="-i $ignore"
+
+if [ -z $1 ]; then
+    echo $(playerctl $parg metadata --format '{{title}}')
+elif [ $1 == "-a" ]; then
+    echo $(playerctl $parg metadata --format '{{artist}}')
+elif [ $1 == "-prev" ]; then
+    playerctl $parg previous 
+elif [ $1 == "-pa" ]; then
+    playerctl $parg play-pause
+elif [ $1 == "-n" ]; then
+    playerctl $parg next
+fi
+

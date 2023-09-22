@@ -1,0 +1,4 @@
+#!/bin/bash
+
+eww open brightness-indicator -c $HOME/.config/eww/brighness-indicator && sh -c '$HOME/.config/eww/brighness-indicator/scripts/brighness'
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+path=$(nsxiv -otb $HOME/pics/wallpapers/ | tail -n1) 
+swww img --transition-type=outer --transition-fps=165 --transition-pos=1.000,0.000 "$path"
+
