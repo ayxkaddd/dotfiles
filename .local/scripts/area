@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path="/home/ayx/pics/Screenshots"
+path="$HOME/pics/Screenshots"
 time=$(date +%Y-%m-%d-%H-%M-%S)
 file="$path/Screenshot_${time}_${RANDOM}.png"
 idir="$HOME/.config/hypr/mako/icons"

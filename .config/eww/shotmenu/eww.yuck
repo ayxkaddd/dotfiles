@@ -14,7 +14,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu -c $HOME/.config/eww/shotmenu/ && sleep 0.3 && $HOME/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
                :class "area-btn"
                :tooltip "Screenshot window area"
                "Area"))
@@ -22,7 +22,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ && sleep 0.1 && /home/ayx/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu -c $HOME/.config/eww/shotmenu/ && sleep 0.1 && $HOME/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
                :class "now-btn"
                :tooltip "Screenshot full screen"
                "Full Screen"))
@@ -30,7 +30,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu -c /home/ayx/.config/eww/shotmenu/ 4&& sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu -c $HOME/.config/eww/shotmenu/ 4&& sleep 0.3 && $HOME/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
                :class "win-btn"
                :tooltip "Screenshot current window"
                "Window"))))     

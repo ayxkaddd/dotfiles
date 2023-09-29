@@ -2,7 +2,7 @@
 
 brighness=$(/usr/bin/brightnessctl -m | cut -d, -f4 | sed 's/%$//')
 prev_brighness=$brighness
-path="/home/ayx/.config/eww/brighness-indicator"
+path="$HOME/.config/eww/brighness-indicator"
 
 while :
 do

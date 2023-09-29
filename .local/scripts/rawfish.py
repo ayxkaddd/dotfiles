@@ -2,8 +2,8 @@
 
 import re 
 
-input_file = '/home/ayx/.local/share/fish/fish_history'
-output_file = '/home/ayx/.local/share/fish/fish_history.raw'
+input_file = '$HOME/.local/share/fish/fish_history'
+output_file = '$HOME/.local/share/fish/fish_history.raw'
 
 pattern = r'^- cmd:\s+(.*)$'
 

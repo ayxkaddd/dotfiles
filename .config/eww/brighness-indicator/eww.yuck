@@ -1,4 +1,4 @@
-(defpoll current-brightness :interval "0s" "/home/ayx/.local/scripts/getbrig")
+(defpoll current-brightness :interval "0s" "$HOME/.local/scripts/getbrig")
 (defvar brightness-hidden "false")
 
 (defwidget brightness-slider []

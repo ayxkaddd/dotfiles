@@ -9,9 +9,9 @@
         (box :class "msc_box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
                 (box :orientation "v" :class "msc_bg" :style "background-image: url('${music_url}');" :spacing 5 :space-evenly "false" :vexpand "false" :hexpand "false"
                         (box :orientation "h" :spacing 28 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-                                (button :class "song_btn_prev" :onclick "sh /home/ayx/.config/hypr/scripts/songcontrol -prev" "")
-                                (button :class "song_btn_play" :onclick "sh -c '/home/ayx/.config/hypr/scripts/songcontrol -pa; sleep 0.2; eww close song 2>/tmp/eww.log' 2>/tmp/eww.log" song_status)
-                                (button :class "song_btn_next" :onclick "sh /home/ayx/.config/hypr/scripts/songcontrol -n" "")
+                                (button :class "song_btn_prev" :onclick "sh $HOME/.config/hypr/scripts/songcontrol -prev" "")
+                                (button :class "song_btn_play" :onclick "sh -c '$HOME/.config/hypr/scripts/songcontrol -pa; sleep 0.2; eww close song 2>/tmp/eww.log' 2>/tmp/eww.log" song_status)
+                                (button :class "song_btn_next" :onclick "sh $HOME/.config/hypr/scripts/songcontrol -n" "")
                         )
                 )
                 (label :halign "start" :class "song" :wrap "false" :limit-width 45 :text song)
@@ -98,7 +98,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && $HOME/.config/hypr/scripts/screenshot --area' 2>/tmp/eww.log"
                :class "area-btn"
                :tooltip "Screenshot window area"
                "Area"))
@@ -106,7 +106,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.1 && /home/ayx/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.1 && $HOME/.config/hypr/scripts/screenshot --now' 2>/tmp/eww.log"
                :class "now-btn"
                :tooltip "Screenshot full screen"
                "Full Screen"))
@@ -114,7 +114,7 @@
             :halign "center"
             :valign "center"
             :space-evenly "false"
-            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && /home/ayx/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
+            (button :onclick "sh -c 'eww close screenshotmenu && sleep 0.3 && $HOME/.config/hypr/scripts/screenshot --win' 2>/tmp/eww.log"
                :class "win-btn"
                :tooltip "Screenshot current window"
                "Window"))))     

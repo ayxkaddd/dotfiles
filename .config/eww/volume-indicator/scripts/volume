@@ -10,7 +10,7 @@ do
 
     if [ "$volume" != "$prev_volume" ]
     then
-        eww update volume-hidden='true' -c /home/ayx/.config/eww/volume-indicator
+        eww update volume-hidden='true' -c $HOME/.config/eww/volume-indicator
         prev_volume=$volume
         sleep 1
 
@@ -19,7 +19,7 @@ do
         then
             continue
         else
-            eww update volume-hidden='false' -c /home/ayx/.config/eww/volume-indicator
+            eww update volume-hidden='false' -c $HOME/.config/eww/volume-indicator
             prev_volume=$volume
         fi
     fi
