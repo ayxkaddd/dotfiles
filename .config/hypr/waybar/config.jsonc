@@ -25,7 +25,7 @@
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%H:%M, %Y, %d %b (%m), %A}",
-        "on-click-right": "sh -c '/home/ayx/.config/hypr/scripts/songmenu'",
+        "on-click-right": "sh -c '$HOME/.config/hypr/scripts/songmenu'",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -41,7 +41,7 @@
             }
         },
         "actions": {
-            "on-click": "sh -c '/home/ayx/.config/hypr/scripts/songmenu'",
+            "on-click": "sh -c '$HOME/.config/hypr/scripts/songmenu'",
             "on-click-right": "mode",
             "on-click-forward": "tz_up",
             "on-click-backward": "tz_down",
@@ -109,7 +109,7 @@
         "format-alt": "{icon} {time}",
         "format-icons": ["", "", "", "", ""],
         "tooltip": false,
-        "on-click": "sh -c '/home/ayx/.config/hypr/scripts/ewwpower'",
-        "on-click-right": "/home/ayx/.config/hypr/scripts/glassmorphismToggle"
+        "on-click": "sh -c '$HOME/.config/hypr/scripts/ewwpower'",
+        "on-click-right": "$HOME/.config/hypr/scripts/glassmorphismToggle"
     }
 }
