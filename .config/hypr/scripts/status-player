@@ -1,6 +1,16 @@
 #!/usr/bin/bash
-ignore="firefox.instance$(pgrep firefox)"
-status=$(playerctl status -i $ignore 2> /dev/null)
+#ignore="firefox.instance$(pgrep firefox)"
+
+ignore=$(playerctl -l | grep firefox.instance | head -n1)
+parg="-i $ignore"
+
+if [ -z "$ignore" ]; then
+  parg=""
+else
+  echo 1>/dev/null 
+fi
+
+status=$(playerctl status $parg 2> /dev/null)
 icon=""
 
 sh ~/.config/hypr/scripts/songart.sh get

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+PT="/opt/garbage/piper"
+
+if [ "$1" = "--filename" ]; then
+    filename="$2"
+    if [ ! -f "$filename" ]; then
+        echo "Error: File $filename not found."
+        exit 1
+    fi
+    text=$(cat "$filename")
+    notify-send "Running piper with text from $filename" -a "Piper" -t 1000
+else
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        notify-send "Running piper. Using Wayland" -a "Piper" -t 1000
+        text=$(wl-paste --type text)
+        echo $text
+    else
+        notify-send "Running piper. Using Xorg" -a "Piper" -t 1000
+        text=$(xclip -o)
+    fi
+fi
+
+echo $text | $PT/piper --model $PT/voices/en_US-libritts_r-medium.onnx --output-raw | aplay -r 22050 -f S16_LE -t raw -

@@ -1,6 +1,14 @@
 #!/bin/bash
 
-ignore="firefox.instance$(pgrep firefox)"
+# ignore="firefox.instance$(pgrep firefox)"
+ignore=$(playerctl -l | grep firefox.instance | head -n1)
+parg="-i $ignore"
+
+if [ -z "$ignore" ]; then
+  parg=""
+else
+  echo 1>/dev/null 
+fi
 
 get_song_art () {
   TMP_DIR="$HOME/.cache/eww"
@@ -11,29 +19,28 @@ get_song_art () {
     mkdir -p $TMP_DIR
   fi
 
-  ART_FROM_SPOTIFY="$(playerctl -i $ignore -p %any,spotify metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
-  ART_FROM_BROWSER="$(playerctl -i $ignore -p %any,mpd,chromium,brave metadata mpris:artUrl | sed -e 's/file:\/\///g')"
+  ART_FROM_SPOTIFY="$(playerctl $parg -p %any,spotify metadata mpris:artUrl | sed -e 's/open.spotify.com/i.scdn.co/g')"
+  #ART_FROM_BROWSER="$(playerctl $parg -p %any,mpd,chromium,brave metadata mpris:artUrl | sed -e 's/file:\/\///g')"
 
-  if [[ $(playerctl -i $ignore -p spotify,%any,firefox,chromium,brave,mpd metadata mpris:artUrl) ]]; then
+  if [[ $(playerctl $parg -p spotify,%any,firefox,chromium,brave,mpd metadata mpris:artUrl) ]]; then
     curl -s "$ART_FROM_SPOTIFY" --output $TMP_TEMP_PATH
-  elif [[ -n $ART_FROM_BROWSER ]]; then
-    cp $ART_FROM_BROWSER $TMP_TEMP_PATH
   else
     cp $HOME/.config/hypr/assets/fallback.png $TMP_TEMP_PATH
   fi
+  # elif [[ -n $ART_FROM_BROWSER ]]; then
+  #   cp $ART_FROM_BROWSER $TMP_TEMP_PATH
 
   cp $TMP_TEMP_PATH $TMP_COVER_PATH
 }
 
-echo_song_art_url () {
-  echo "$HOME/.cache/eww/cover.png"
-}
+#echo_song_art_url () {
+#  echo "$HOME/.cache/eww/cover.png"
+#}
 
 if [[ $1 == "echo" ]]; then
-  echo_song_art_url
+  echo "$HOME/.cache/eww/cover.png"
 fi
 
 if [[ $1 == "get" ]]; then
   get_song_art
 fi
-

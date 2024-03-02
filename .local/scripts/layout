@@ -3,10 +3,10 @@
 command=$(hyprctl -j getoption input:kb_layout | jq -r .str)
 
 if [ "$command" = "us,ua" ]; then
-    notify-send "layout" "added ru lang"
+    hyprnotify "[layout] added eww lang :("
     hyprctl keyword input:kb_layout us,ua,ru
 else
-    notify-send "layout" "removed ru lang"
+    hyprnotify "[layout] removed eww lang :)"
     hyprctl keyword input:kb_layout us,ua
 fi
 

@@ -5,11 +5,13 @@ if [ -z $1 ]; then
         echo "mount point is alredy mounted. exiting."
         exit 2
     else
+        echo "mounting /dev/sda1 to /mnt/flashd..."
         sudo mount -t vfat -o uid=1000,gid=1000,umask=0022 /dev/sda1 /mnt/flashd/
-        echo "/dev/sda1 is mounted to /mnt/flashb"
+        echo "/dev/sda1 is mounted to /mnt/flashd"
     fi
 else
+    echo "unmounting /dev/sda1 from /mnt/flashd...."
     sudo umount /mnt/flashd
-    echo "/mnt/flashb is unmouted"
+    echo "/dev/sda1 is unmouted"
 fi
 

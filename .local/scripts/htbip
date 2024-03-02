@@ -1,0 +1,14 @@
+#!/bin/bash
+
+test_=$(ip addr show tun0)
+
+if [ $? -ne 0 ]; then
+    hyprnotify -e "not connected to vnp!"
+    exit 0
+fi
+
+IP=$(ip addr show tun0 | awk '/inet / {print $2}' | cut -d'/' -f1)
+
+printf $IP | wl-copy
+hyprnotify $IP
+

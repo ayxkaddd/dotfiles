@@ -3,7 +3,7 @@
 if [ -z $1 ]; then
     sudo pacman -Syy
 else
-    echo "running without syncing repos"
+    echo "running without updating"
 fi
 
 new_updates=$(checkupdates | wc -l)

@@ -29,4 +29,3 @@ elif [ $1 == "-c" ]; then
 else
     figlet -c "no jimmy."
 fi
-

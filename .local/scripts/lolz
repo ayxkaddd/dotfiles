@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while true; do
+    clear
+    img2sixel -w 200 -h 200 /home/ayx/pics/catlollooking.jpg
+    sleep 1
+    clear
+    img2sixel -w 300 -h 100 /home/ayx/pics/catlollooking.jpg
+    sleep 1
+    clear
+done

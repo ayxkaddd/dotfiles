@@ -1,4 +1,4 @@
-fish_add_path $HOME/.spicetify $HOME/.local/bin $HOME/.local/scripts
+fish_add_path $HOME/.spicetify $HOME/.local/bin $HOME/.local/scripts $HOME/.local/share/nvim/meson/
 
 alias vim='nvim'
 alias ls='lsd --group-directories-first'
@@ -14,7 +14,7 @@ alias  ..="cd ../"
 alias logouth="hyprclt dispatch exit"
 alias encrypt="openssl enc -aes-256-cbc -in"
 alias decrypt="openssl enc -d -aes-256-cbc -in"
-alias muc="muc --file $HOME/.local/share/fish/fish_history.raw"
+alias muc="muc --file /home/ayx/.local/share/fish/fish_history.raw"
 alias demo="xwaylandvideobridge"
 alias gi="git init"
 alias gsw="git show"
@@ -33,6 +33,11 @@ alias wh="which"
 alias gt="gotop"
 alias recentfile="recentfile -n1"
 alias sxiv="nsxiv"
-alias code="vscodium"
+alias vcode="vscodium"
 alias tsniff="sudo python /opt/garbage/capture.py"
 alias nazi="nvim"
+alias snyk="/home/ayx/.local/share/snyk-ls/snyk-linux"
+alias rss="newsboat"
+alias htb="htbvpn"
+alias tree="tree -C"
+alias ani-cli="ani-cli --dub"

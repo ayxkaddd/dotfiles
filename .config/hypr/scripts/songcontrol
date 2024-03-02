@@ -1,6 +1,13 @@
 #!/bin/bash
-ignore="firefox.instance$(pgrep firefox)"
+# ignore="firefox.instance$(pgrep firefox)"
+ignore=$(playerctl -l | grep firefox.instance | head -n1)
 parg="-i $ignore"
+
+if [ -z "$ignore" ]; then
+  parg=""
+else
+  echo 1>/dev/null 
+fi
 
 if [ -z $1 ]; then
     echo $(playerctl $parg metadata --format '{{title}}')
@@ -13,4 +20,3 @@ elif [ $1 == "-pa" ]; then
 elif [ $1 == "-n" ]; then
     playerctl $parg next
 fi
-

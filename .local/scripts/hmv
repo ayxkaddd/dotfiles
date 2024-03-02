@@ -1,0 +1,60 @@
+#!/bin/bash
+
+netmask_to_cidr() {
+    local netmask="$1"
+    local cidr=0
+    local IFS='.'
+    read -r -a octets <<< "$netmask"
+    for octet in "${octets[@]}"; do
+        while [ $octet -gt 0 ]; do
+            cidr=$((cidr + $((octet % 2)) ))
+            octet=$((octet >> 1))
+        done
+    done
+    echo "$cidr"
+}
+
+create_vm() {
+    machine=$1
+    filename=$(unzip -l $HOME/downloads/$machine.zip | grep -oE '[^ ]+\.[^ ]+$' | grep -v '\.zip')
+
+    mkdir -p /opt/hmv/$machine/vm
+    echo "[*] Creating directory in /opt/hmv/"
+ 
+    # cd /opt/hmv/$machine/vm
+    # mv $HOME/downloads/$machine.zip .
+    # echo "[*] Moving zip to vm/ folder"
+
+    unzip $machine.zip -d "/opt/hmv/$machine/vm/"
+    echo "[*] Unziping the archive"
+
+    rm -r $HOME/downloads/$machine.zip
+
+    echo "[*] Importing $filename to virtual box"
+    VBoxManage import $filename
+}
+
+if [ -z $1 ]; then
+    exit
+elif [ $1 == "-i" ]; then
+    netmask=$(ifconfig wlo1 | awk '/netmask/{print $4}')
+    ip=$(ifconfig wlo1 | awk '/inet /{print $2}')
+
+    cidr=$(netmask_to_cidr "$netmask")
+
+    IFS='.' read -r -a ip_octets <<< "$ip"
+    IFS='.' read -r -a netmask_octets <<< "$netmask"
+    network_address=""
+    for ((i=0; i<4; i++)); do
+        network_address+="$((${ip_octets[i]} & ${netmask_octets[i]}))"
+        if [ $i -lt 3 ]; then
+            network_address+="."
+        fi
+    done
+
+    cmd="netdiscover -r $network_address/$cidr | grep PCS"
+    echo $cmd
+    echo $cmd | wl-copy
+else
+    create_vm "$1"
+fi

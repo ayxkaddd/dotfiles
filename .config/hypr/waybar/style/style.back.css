@@ -2,7 +2,7 @@
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
-font-size: 105%;
+font-size: 104%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 0px;
 margin-top: 1px;
@@ -54,26 +54,27 @@ tooltip label {
     padding: 2px;
     color: #7d7d7d;
     margin-right: 5px;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
 }
    
 #workspaces button.active {
     color: #f8f2f2;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
+    /* border-radius: 15px 15px 15px 15px; */
 }
-
+  
 #workspaces button.focused {
     color: #d8dee9;
 }
    
 #workspaces button.urgent {
     color: #d8dee9;
+    /* border-radius: 10px; */
 }
        
 #workspaces button:hover {
     color: #f8f2f2;
+    /* border-radius: 15px; */
 }
-
+   
 #clock,
 #battery,
 #cpu,

@@ -1,6 +1,6 @@
 #!/bin/bash
 WPATH="$HOME/.config/hypr/waybar"
-wargs="--bar main-bar --config $WPATH/config --style $WPATH/style.css"
+wargs="--bar main-bar --config $WPATH/config.jsonc --style $WPATH/style.css"
 
 if [ -z $1 ]; then
     pkill -f "waybar $wargs" 
