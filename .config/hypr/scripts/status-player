@@ -1,6 +1,4 @@
 #!/usr/bin/bash
-#ignore="firefox.instance$(pgrep firefox)"
-
 ignore=$(playerctl -l | grep firefox.instance | head -n1)
 parg="-i $ignore"
 
@@ -12,8 +10,6 @@ fi
 
 status=$(playerctl status $parg 2> /dev/null)
 icon=""
-
-sh ~/.config/hypr/scripts/songart.sh get
 
 if [[ "$status" == "Playing" ]]; then
   icon=""

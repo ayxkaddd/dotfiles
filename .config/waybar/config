@@ -1,19 +1,33 @@
 {
-    "height": 30,
-    "spacing": 4,
-    "modules-left": [
-        "hyprland/workspaces"
+	"layer": "bottom",
+	"position": "top",
+	"height": 32,
+	"spacing": 0,
+
+	"tooltip": false,
+
+	"margin-top": 12,
+	"margin-left": 12,
+	"margin-right": 12,
+
+	"modules-left": [
+		"custom/spacing",
+		"hyprland/workspaces"
+	],
+    
+	"modules-center": [
+		"custom/spacing", "clock", "custom/notifications"
     ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
-        "tray",
-        "hyprland/language",
-        "pulseaudio",
-        "pulseaudio#microphone",
-        "battery"
-    ],
+
+	"modules-right": [
+		"tray",
+		"custom/layout", "hyprland/language",
+		"custom/volume", "pulseaudio",
+		"custom/micro", "pulseaudio#microphone",
+		"custom/battery", "battery",
+		"custom/spacing"
+	],
+
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate",
@@ -22,6 +36,53 @@
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
+    "hyprland/language": {
+        "format": "{}",
+        "format-uk": "ua",
+        "format-en": "us",
+        "format-ru": "ew",
+        "keyboard-name": "at-translated-set-2-keyboard",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+    },
+	"custom/workspaces": {
+		"tooltip": false,
+		"format": "workspaces"
+	},
+	"custom/volume": {
+		"tooltip": false,
+		"format": "volume"
+	},
+	"custom/micro": {
+		"tooltip": false,
+		"format": "micro"
+	},
+	"tray": {
+        "icon-size": 20,
+        "spacing": 8
+    },
+	"custom/brightness": {
+		"tooltip": false,
+		"format": "brightness",
+		"on-scroll-up": "brightnessctl s 5%+",
+		"on-scroll-down": "brightnessctl s 5%-"
+	},
+	"custom/battery": {
+		"tooltip": false,
+		"format": "battery"
+	},
+	"custom/layout": {
+		"tooltip": false,
+		"format": "",
+		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+	},
+	"custom/time": {
+		"tooltip": false,
+		"format": "time"
+	},
+	"custom/spacing": {
+		"tooltip": false,
+		"format": " "
+	},
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%H:%M, %Y, %d %b (%m), %A}",
@@ -41,7 +102,6 @@
             }
         },
         "actions": {
-            "on-click": "sh -c '/home/ayx/.config/hypr/scripts/songmenu'",
             "on-click-right": "mode",
             "on-click-forward": "tz_up",
             "on-click-backward": "tz_down",
@@ -49,21 +109,20 @@
             "on-scroll-down": "shift_down"
         }
     },
-    "tray": {
-        "icon-size": 20,
-        "spacing": 8
-    },
-    "hyprland/language": {
-        "format": "{}",
-        "format-uk": "ua",
-        "format-en": "us",
-        "format-ru": "ew",
-        "keyboard-name": "at-translated-set-2-keyboard",
-        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
+	"backlight": {
+		"format": "{percent}%",
+		"tooltip": false,
+		"scroll-step": 5.0
+	},
+	"battery": {
+		"format": "{capacity}%",
+		"full-at": 99,
+		"tooltip": false,
+		"on-click": "sleep 0.1; /home/ayx/.config/hypr/scripts/ewwpower"
+	},
+	"pulseaudio": {
+        "format": "{volume}%",
+        "format-bluetooth": "{volume}%",
         "format-muted": "",
         "format-icons": {
             "headphone": "",
@@ -83,7 +142,7 @@
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume} %",
+        "format-source": "{volume} %",
         "format-source-muted": "",
         "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
         "on-click-right": "pavucontrol",
@@ -91,25 +150,8 @@
         "on-scroll-down": "~/.config/hypr/scripts/volume --mic-dec",
         "scroll-step": 5
     },
-    "battery": {
-        "interval": 30,
-        "align": 0,
-        "rotate": 0,
-        "full-at": 99,
-        "design-capacity": false,
-        "states": {
-            "good": 80,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-full": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
-        "on-click": "sh -c '/home/ayx/.config/hypr/scripts/ewwpower'",
-        "on-click-right": "/home/ayx/.config/hypr/scripts/glassmorphismToggle"
-    }
+	"custom/notifications": {
+		"format": " 󰂟 ",
+		"on-click": "sleep 0.1; eww open --toggle notifcenter -c ~/.config/eww/notification/"
+	}
 }

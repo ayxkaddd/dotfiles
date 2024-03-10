@@ -1,5 +1,4 @@
 #!/bin/bash
-# ignore="firefox.instance$(pgrep firefox)"
 ignore=$(playerctl -l | grep firefox.instance | head -n1)
 parg="-i $ignore"
 
@@ -20,3 +19,5 @@ elif [ $1 == "-pa" ]; then
 elif [ $1 == "-n" ]; then
     playerctl $parg next
 fi
+
+sh ~/.config/hypr/scripts/songart.sh get

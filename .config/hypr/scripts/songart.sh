@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ignore="firefox.instance$(pgrep firefox)"
 ignore=$(playerctl -l | grep firefox.instance | head -n1)
 parg="-i $ignore"
 
@@ -25,17 +24,13 @@ get_song_art () {
   if [[ $(playerctl $parg -p spotify,%any,firefox,chromium,brave,mpd metadata mpris:artUrl) ]]; then
     curl -s "$ART_FROM_SPOTIFY" --output $TMP_TEMP_PATH
   else
-    cp $HOME/.config/hypr/assets/fallback.png $TMP_TEMP_PATH
+    cp $TMP_DIR/fallback.png $TMP_TEMP_PATH
   fi
   # elif [[ -n $ART_FROM_BROWSER ]]; then
   #   cp $ART_FROM_BROWSER $TMP_TEMP_PATH
 
   cp $TMP_TEMP_PATH $TMP_COVER_PATH
 }
-
-#echo_song_art_url () {
-#  echo "$HOME/.cache/eww/cover.png"
-#}
 
 if [[ $1 == "echo" ]]; then
   echo "$HOME/.cache/eww/cover.png"
