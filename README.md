@@ -1,6 +1,6 @@
 # dotfiles
 
-my configs and scripts i use daily 
+my configs and scripts i use daily
 
 ## Preview
 
