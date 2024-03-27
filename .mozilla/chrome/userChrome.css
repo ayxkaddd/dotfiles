@@ -1,0 +1,119 @@
+/* Firefox Alpha v 1.1.0 */
+/* Source: https://github.com/Tagggar/Firefox-Alpha/ */
+:root {
+  --6: 6px;
+  --8: 8px;
+  --tab-min-height: 24px !important;
+  --tab-min-width: 24px !important;
+  --toolbarbutton-border-radius: var(--6) !important;
+  --tab-border-radius: var(--6) !important;
+  --main: #77777770;
+  --item: #77777730;
+  --grey: #b8b8b8;
+  --red: #ff000070;
+}
+
+/* Clean UI */
+* {
+  box-shadow: none !important;
+  /* border: none !important; */
+  outline: none !important;
+}
+
+/* Customization Panel Fix */
+#customization-panelWrapper > .panel-arrowbox > .panel-arrow {
+  margin-inline-end: initial !important;
+}
+
+/* ❌ Overflow Icon */
+#nav-bar-overflow-button,
+
+/* ❌ Menu Icons */
+#contentAreaContextMenu > menuitem > .menu-iconic-left,
+#context-navigation > menuitem > .menu-iconic-left,
+
+
+/* *️⃣ Menu *️⃣ */
+/* *️⃣ Toolbar Menu Alt */
+#toolbar-menubar[autohide="true"][inactive="true"] {
+  height: 0 !important;
+  margin: 0 !important;
+}
+
+#toolbar-menubar {
+  height: 24px !important;
+  border-radius: var(--6);
+  background-color: var(--grey);
+  position: relative;
+  margin: var(--6) var(--6) 0 var(--6);
+  z-index: 3;
+}
+
+
+/* *️⃣ Toolbar Menu Item */
+menu[_moz-menuactive="true"]:not([disabled="true"]),
+menucaption[_moz-menuactive="true"]:not([disabled="true"]) {
+  background-color: var(--main) !important;
+  border-radius: 4px;
+}
+#main-menubar {
+  margin: 4px;
+  background-color: none;
+  color: black;
+  height: 16px !important;
+}
+
+/* *️⃣ Menu Popup Box */
+.menupopup-arrowscrollbox {
+  border-radius: var(--8) !important;
+  padding: var(--6) !important;
+  background-color: var(--grey) !important;
+  color: black !important;
+}
+
+/* Menu Position */
+menupopup {
+  margin: var(--6) 0 !important;
+}
+
+#main-menubar menupopup {
+    margin: var(--6) var(--8) 0 -8px !important;
+}
+
+menupopup > menuitem,
+menupopup > menu {
+  appearance: none !important;
+  max-height: 20px !important;
+  min-height: 20px !important;
+  border-radius: var(--6) !important;
+  padding-inline: var(--6) !important;
+  margin: 0 !important;
+
+
+
+}
+.menu-accel {
+  margin-inline: var(--6) 0 !important;
+}
+
+/* ⬅️➡️🔄️ Context Nav Text Buttons*/
+menuitem[_moz-menuactive="true"]:not([disabled]),
+menupopup > menuitem[_moz-menuactive],
+menupopup > menu[_moz-menuactive] {
+  background-color: var(--main) !important;
+  color: black !important;  
+}
+#context-navigation {
+  flex-direction: column !important;
+}
+#context-navigation > menuitem::before {
+  content: attr(aria-label);
+}
+#context-navigation > menuitem {
+  justify-content: start !important;
+  border-radius: var(--6) !important;
+  padding-inline: var(--6) !important;
+  height: 20px !important;
+  width: 100% !important;
+}
+
