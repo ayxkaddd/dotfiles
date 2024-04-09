@@ -57,3 +57,12 @@ $cc-br: rgba(148, 144, 144, 0.4);
   padding-right: 5px;
   border: 1px solid $cc-br;
 }
+
+.clear-history-button {
+  font-size: 15px;
+  border-radius: 16px;
+  padding: 5px 100px;
+  border: 1px solid $cc-br;
+  // max-width: 100px/;
+}
+

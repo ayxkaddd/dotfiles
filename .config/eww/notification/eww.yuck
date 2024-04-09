@@ -30,7 +30,7 @@
 	)
 )
 (defwidget notifcenter[]
-    (box :class "box-notifcenter" :orientation 'v' :space-evenly true
+    (box :class "box-notifcenter" :orientation 'v' :space-evenly true        
         (scroll :vscroll true
           (box :orientation 'v' :space-evenly false
               (box :orientation "v" :space-evenly false :spacing 10
@@ -44,6 +44,15 @@
                                 :body {entry["body"]["data"]}
                                 :is_ss {entry["appname"]["data"] == "ss" ? "Screenshot Tool" : entry["appname"]["data"]}
                             )
+                        )
+                    )
+                )
+                (revealer :vexpand true :reveal {dunstcount >= 1} :transition "crossfade"
+
+                    (box :class "control-buttons" :orientation "v" :space-evenly false
+                        (button :class "clear-history-button"
+                            :onclick "dunstctl history-clear"
+                            "Clear History"
                         )
                     )
                 )
